@@ -1,5 +1,7 @@
 const GameState = Object.freeze({
     WELCOMING:   Symbol("welcoming"),
+    ALLEY: Symbol("alley"),
+    CONFRONT: Symbol("confront"),
     FLAT:  Symbol("flat"),
     WAIT: Symbol("wait"),
     MANSION: Symbol("mansion"),
@@ -17,19 +19,20 @@ export default class Game{
         let sReply = "";
         switch(this.stateCur){
             case GameState.WELCOMING:
-                sReply = "It is a dark and rainy night. Bang! You have a flat tire. Too bad you don't have a spare. Do you wait or go to the spooky mansion for help?";
-                this.stateCur = GameState.FLAT;
+                sReply = "You were walking around downtown and you see kids fighting over a wallet in an alley. The kids see you and stop. Do you enter the alley or do you continue on your way?";
+                this.stateCur = GameState.ALLEY;
                 break;
-            case GameState.FLAT:
-                if(sInput.toLowerCase().match("wait")){
-                    sReply = "The road is deserted. After 1 hour there is still no help. Do you keep Waiting or do you go to the house?";
+            case GameState.ALLEY:
+                if(sInput.toLowerCase().match("enter")){
+                    sReply = "All of the kids but one run leaving the wallet to the scrawniest kid you have ever seen. Do you confront the kid or continue on your way?";
+                    this.stateCur = GameState.CONFRONT
                 }else{
-                    sReply ="On the door is a large knocker. Do you knock or run back to your car to wait?";
-                    this.stateCur = GameState.MANSION;
+                    sReply ="All of the kids but one run leaving the wallet to the scrawniest kid you have ever seen. The kid leaves the alley and looks at you. Do you confront the kid or continue on your way?";
+                    this.stateCur = GameState.CONFRONT;
                 }
                 break;
-            case GameState.MANSION:
-                if(sInput.toLowerCase().match("knock")){
+            case GameState.CONFRONT:
+                if(sInput.toLowerCase().match("confront")){
                     sReply = "The door opens and you are greeted by a hunch-back butler. He asks you to come in. Do you go in or run back to the car?"
                     this.stateCur = GameState.BUTLER;
                 }else{
