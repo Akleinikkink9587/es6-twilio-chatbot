@@ -51,11 +51,11 @@ export default class Game {
                 break;
             case GameState.LOST://TODO
                 if (sInput.toLowerCase().match("call")) {
-                    sReply = "You decided to call for help. You took your phone our of your pocket and you have no signal. You see the same scrawny kid from the alley. Do you approach the kid or keep wandering till you find your way?";
+                    sReply = "You decided to call for help. You took your phone our of your pocket and you have no signal. You see the same scrawny kid from the alley in the distance. Do you approach the kid or keep wandering till you find your way?";
                     this.stateCur = GameState.APPROACH_KID_LOST;
                 } else {
-                    sReply = "You seem to have walked in to a party. The host offers you some toast. Do you take the toast or ask to call a tow truck?";
-                    this.stateCur = GameState.TOAST;
+                    sReply = "You decided to keep wandering. After 30 minutes of wandering you still have no idea where you are. You see the scrawny kid in the distance. Do you approach the kid or continue wondering?";
+                    this.stateCur = GameState.APPROACH_KID_LOST;
                 }
                 break;
             case GameState.APPROACH_KID_LOST:
